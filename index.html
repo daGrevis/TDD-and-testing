@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>TDD un testēšana</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+        <link rel="stylesheet" href="css/custom.css">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <link href="http://fonts.googleapis.com/css?family=Oswald:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <section>
+                    <h1>TDD un testēšana</h1>
+                    <h3>Raitis (<strong>daGrevis</strong>) Stengrevics</h3>
+                </section>
+
+                <section>
+                    <h2>Jautājumi</h2>
+                    <p>Cik no jums ir...</p>
+                    <ul>
+                        <li class="fragment">Dzirdējuši par koda testēšanu?</li>
+                        <li class="fragment">Vēlas testēt savu kodu?</li>
+                        <li class="fragment">Jau testē savu kodu?</li>
+                        <li class="fragment">Izmanto TDD?</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Kas ir automatizētā testēšana?</h2>
+                    <blockquote>
+                        Test automation is the use of special software to control the execution of tests and the comparison of actual outcomes to predicted outcomes.
+                    </blockquote>
+                    <span class="quote_author">Wikipedia</span>
+                </section>
+
+                <section>
+                    <h2>Kā tas izskatās?</h2>
+                    <pre><code>
+class MathTest extends PHPUnit_Framework_TestCase {
+
+    function testAddition() {
+        $this->assertEquals(2 + 2, 4);
+    }
+
+    function testSubtraction() {
+        $this->assertEquals(5 - 2, 3);
+    }
+
+    function testMultiplication() {
+        $this->assertEquals(3 * 2, 6);
+    }
+
+    function testDivision() {
+        $this->assertEquals(6 / 3, 2);
+    }
+
+}
+                    </pre></code>
+                </section>
+
+                <section>
+                    <h2>Kas tālāk?</h2>
+                    <pre class="fragment"><code>
+~/Php % phpunit test.php
+PHPUnit 3.7.19 by Sebastian Bergmann.
+
+....
+
+Time: 0 seconds, Memory: 2.25Mb
+
+OK (4 tests, 4 assertions)
+                    </code></pre>
+                    <pre class="fragment"><code>
+~/Python/daGrevis.lv ±master % bin/python dagrevis_lv/manage.py test
+Creating test database for alias 'default'...
+.........................................................................................................................................................................................................................................................................................................................................................s.......................................................s........................................................................
+----------------------------------------------------------------------
+Ran 474 tests in 22.313s
+
+OK (skipped=2)
+Destroying test database for alias 'default'...
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Kādi ir testēšanas plusi (+)?</h2>
+                    <ul>
+                        <li class="fragment">Pierāda, ka kods strādā un strādās nākotnē,</li>
+                        <li class="fragment">Ietaupa programmētāja laiku ilgtermiņā,</li>
+                        <li class="fragment">Palīdz atrast vairāk bagus un nepieļaut jau atrasto bagu parādīšānos nākotnē,</li>
+                        <li class="fragment">Atļauj sistēmu ātrāk refaktorēt, bez bailēm to salauzt,</li>
+                        <li class="fragment">Bieži vien uzlabo sistēmas arhitektūru,</li>
+                        <li class="fragment">Palīdz saprast kā sistēmā strādā, it īpaši — jaunajiem programmētājiem;</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Kādi ir testēšanas mīnusi (-)?</h2>
+                    <ul>
+                        <li class="fragment">Izstrādes laiks būs ilgāks,</li>
+                        <li class="fragment">Tev un kolēģiem ir jāiemācās vēl viena jauna lieta,</li>
+                        <li class="fragment">Sistēma ir vairāk koda (testu kods) un ir nepieciešami tūļi kā phpUnit,</li>
+                        <li class="fragment">Ja kāds no testiem feilo, ir jāsaprot vai kkas ir salūzis sistēmā vai pašā testā ir kļūda;</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Kā sākt testēt kodu?</h2>
+                    <blockquote>
+                        Imperfect tests, run frequently, are much better than perfect tests that are never written at all.
+                    </blockquote>
+                    <span class="quote_author">Martin Fowler</span>
+                </section>
+
+                <section>
+                    <h2>Ko ir iespējams notestēt un cik daudz to vajag darīt?</h2>
+                </section>
+
+                <section>
+                    <h2>Kas ir TDD?</h2>
+                    <blockquote>
+                        Test-driven development (TDD) is a software development process that relies on the repetition of a very short development cycle: first the developer writes an (initially failing) automated test case that defines a desired improvement or new function, then produces the minimum amount of code to pass that test, and finally refactors the new code to acceptable standards.
+                    </blockquote>
+                    <span class="quote_author">Wikipedia</span>
+                </section>
+
+                <section>
+                    <h1>Paldies par jūsu uzmanību!</h1>
+                    <h3>Jautājumi?</h3>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>

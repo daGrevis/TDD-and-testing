@@ -1,0 +1,48 @@
+::selection {
+    background: #268bd2;
+}
+
+.reveal blockquote {
+    box-shadow: none;
+    width: 90%;
+    text-align: left;
+}
+
+.reveal code {
+    max-height: 100%;
+}
+
+.reveal .quote_author:before {
+    content: "/";
+    font-weight: lighter;
+    padding-right: .25em;
+}
+.reveal .quote_author:after {
+    content: "/";
+    font-weight: lighter;
+    padding-left: .25em;
+}
+.reveal .quote_author {
+    font-style: italic;
+    font-weight: bold;
+    display: block;
+    margin-left: 2em;
+    text-align: left;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+    color: #262626;
+    font-family: "Oswald";
+}
+
+.reveal h1 {
+    font-weight: 700;
+}
+
+.reveal .progress  {
+    height: .4em;
+}
+
+.reveal .progress span {
+    background: #268bd2;
+}
