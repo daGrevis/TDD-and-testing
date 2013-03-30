@@ -10,6 +10,7 @@
 
 .reveal code {
     max-height: 100%;
+    white-space: pre-wrap;
 }
 
 .reveal .quote_author:before {
