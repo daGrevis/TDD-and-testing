@@ -2,6 +2,14 @@
     background: #268bd2;
 }
 
+.reveal {
+    font-family: "Noto Sans";
+}
+
+.reveal section {
+    line-height: 1.4em !important;
+}
+
 .reveal blockquote {
     box-shadow: none;
     width: 90%;
